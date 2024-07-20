@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton+SC&display=swap");
+
+@font-face {
+  font-family: "InterT";
+  src: url(./assets/fonts/InterTight-Italic-VariableFont_wght.ttf);
+}
+/* *donne du style à tout les éléments */
+/* * {
+    margin: 0;
+    padding: 0;
+    border: 2px solid red;
+} */
+body {
+  font-family: "InterT", Verdana;
+  /* les grosses images ont en fait des background en css alors google fera mieux le reférencement naturel dans le site est bien fait -background:url(./assets/images/bg.jpg) no-repeat center/cover; */
+  background: url(./assets/images/bg.jpg) center/cover;
+  /* VH =100 pour cent de la taille de l'écran(viewport height) */
+  min-height: 100vh;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+
+  /* les tailles de police doivent être en 1 rem==16px 2rem  la taille d'un h1 vw pour adapter la taille de la police selon la taille de l'écran viewport width*/
+  font-size: 8vw;
+  text-shadow: 0px 1px 9px #9b8e8ed1;
+  color: rgba(141, 104, 235, 1);
+  font-family: "Anton SC", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+main {
+  min-height: 500px; /* permetre un flexibilite au cas ou la hauteur deborde */
+  background: rgba(244, 192, 192, 0.723);
+  width: 90%;
+  /* en haut et en bas 0  et à gauche et à droute auto pour les margin */
+  margin: 0 auto;
+  border: 2px solid rgba(141, 104, 235, 1);
+  border-radius: 20px 20px 0 30px;
+  box-shadow: -2px -2px 0px 2px rgb(84 88 194);
+  padding: 15px;
+}
+h2 {
+  margin: 0;
+}
+
+.flexbox,
+.grid,
+.absolute {
+  /* display: flex; */
+  border: 2px solid skyblue;
+  border-radius: 10px;
+  padding: 10px; /* mt20+tab-raccourcie+ctrl: */
+  margin-top: 20px;
+}
+
+/* FLEXBOX */
+/* sert à repartir équitablement des éléments sur la page */
+
+.flexbox ul {
+  padding: 0;
+  display: flex; /* aligne les éléments horizontalement */
+  justify-content: space-around; /* rétablir équitablement les elt sur la page */
+}
+
+.flexbox li {
+  list-style: none;
+  height: 160px; /* h160 pour le raccourcie*/
+  width: 160px;
+  margin: 10px;
+  background: turquoise;
+  /* centrer un unique elt verticalement et horizontalement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  /* repartie de facon plus precise ce que l'on veut */
+}
+.grid img {
+  width: 80%;
+  margin-top: 20px;
+  display: block;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "i1 i2"
+    "ta ta"
+    "vi bt";
+}
+
+input,
+textarea {
+  margin: 5px;
+  border: 1px solid darkblue;
+  padding: 10px;
+  font-size: 1.1em;
+  font-family: "DMSerif";
+  border-radius: 5px;
+}
+textarea {
+  grid-area: ta;
+  height: 40px;
+  resize: none;
+}
+
+#btn-submit {
+  grid-area: bt;
+  cursor: pointer;
+  background: #7adee1;
+  transition: 0.2s;
+}
+
+#btn-submit:hover {
+  background: rgb(225, 225, 234);
+}
+
+/* Absolute */
+/* sans elt en relative de base lelt en absolute l'est par rapport au body */
+/* il faut mettre une position relative au parent pour contraindre l'élément en absolute dans ses frontière */
+.absolute {
+  position: relative;
+}
+#circle1 {
+  height: 60px;
+  width: 60px;
+  background: skyblue;
+  position: absolute;
+  border-radius: 150px; /*cercle */
+  top: -20px;
+  right: -20px;
+}
+
+#circle2 {
+  height: 40px;
+  width: 40px;
+  border-radius: 150px;
+  background: teal;
+  position: absolute;
+  left: 50%;
+  transform: translateX(0.5%);
+  top: 10px;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+  .grid-container {
+    display: block;
+  }
+  .grid-container img {
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .flexbox ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "i1"
+      "i2"
+      "ta"
+      "bt";
+  }
+  input,
+  textarea {
+    font-size: 0.8em;
+  }
+}
